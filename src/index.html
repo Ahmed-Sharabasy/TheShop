@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Car Parts Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>🚗 Car Parts Manager</h2>
+      <ul>
+        <li class="active">الرئيسية</li>
+        <li>المنتجات</li>
+        <li>العملاء</li>
+        <li>الفواتير</li>
+        <li>التقارير</li>
+        <li>صفحة البيع</li>
+        <li>الإعدادات</li>
+      </ul>
+    </aside>
+
+    <main class="main">
+      <header class="top">
+        <h1>لوحة التحكم</h1>
+        <button class="settings-btn">⚙️ إعدادات</button>
+      </header>
+
+      <section class="stats">
+        <div class="card">💰 إجمالي المبيعات <span>5,600 ج</span></div>
+        <div class="card">🛒 عدد الفواتير <span>1152</span></div>
+        <div class="card">👥 العملاء <span>47</span></div>
+      </section>
+
+      <section class="data-section">
+        <div class="box">
+          <h3>المنتجات</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>الكمية</th>
+                <th>الفئة</th>
+                <th>الاسم</th>
+                <th>السعر</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>12</td>
+                <td>بطاريات</td>
+                <td>EXIDE</td>
+                <td>1300 ج</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>إطارات</td>
+                <td>Pirelli</td>
+                <td>950 ج</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="box">
+          <h3>العملاء</h3>
+          <input type="text" placeholder="بحث عن عميل" />
+          <table>
+            <thead>
+              <tr>
+                <th>الائتمان</th>
+                <th>رقم الهاتف</th>
+                <th>الاسم</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>01012345678</td>
+                <td>سعيد لمعي</td>
+              </tr>
+              <tr>
+                <td>30</td>
+                <td>01234567990</td>
+                <td>سمير عبد الهادي</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="box">
+          <h3>إصدار فاتورة</h3>
+          <label>اختيار العميل:</label>
+          <select>
+            <option>سعيد لمعي</option>
+          </select>
+          <label>المنتج:</label>
+          <select>
+            <option>EXIDE</option>
+          </select>
+          <label>الكمية:</label>
+          <input type="number" value="1" />
+          <p>المجموع: <strong>2400 ج</strong></p>
+          <button>حفظ الفاتورة</button>
+          <button>🖨️ طباعة</button>
+        </div>
+
+        <div class="box">
+          <h3>التقارير</h3>
+          <label>من:</label>
+          <input type="date" />
+          <label>إلى:</label>
+          <input type="date" />
+          <p>💵 إجمالي مبيعات: <strong>24,390 ج</strong></p>
+          <p>🧾 إجمالي شراء: <strong>15,800 ج</strong></p>
+          <button>تحديث التقرير</button>
+          <button>📁 تصدير Excel</button>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

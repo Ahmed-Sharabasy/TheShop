@@ -1,0 +1,128 @@
+body {
+  margin: 0;
+  font-family: "Cairo", sans-serif;
+  background: #f7f9fb;
+  direction: rtl;
+}
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: #2e3b55;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 12px 10px;
+  cursor: pointer;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+  background: #445173;
+  border-radius: 5px;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-btn {
+  background: #ddd;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.card {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  flex: 1;
+  box-shadow: 0 0 5px #ccc;
+  font-weight: bold;
+}
+
+.card span {
+  display: block;
+  margin-top: 10px;
+  font-size: 18px;
+  color: #2e3b55;
+}
+
+.data-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.box {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px #ccc;
+}
+
+.box h3 {
+  margin-top: 0;
+}
+
+.box table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.box th,
+.box td {
+  text-align: right;
+  padding: 6px;
+  border-bottom: 1px solid #eee;
+}
+
+.box input,
+.box select {
+  width: 100%;
+  margin: 5px 0 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.box button {
+  margin: 5px 5px 0 0;
+  padding: 6px 12px;
+  background: #2e3b55;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
