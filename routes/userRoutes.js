@@ -1,7 +1,12 @@
 const express = require("express");
 const userController = require("../controllers/userController.js");
+const userAuth = require("../controllers/userAuth.js");
 
-router = express.Router();
+const router = express.Router();
 
 router.route("/").get(userController.getAllUser);
+
+router.route("/signup").post(userAuth.signup);
+
+// export one thing only
 module.exports = router;
