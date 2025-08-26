@@ -39,8 +39,19 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-userSchema.methods.checkPasswordsAreTheSame = async function (passwod) {
-  return await bcryptjs.compare(passwod, process.env.JWT_SECRET);
+userSchema.methods.checkPasswordsAreTheSame = async function (
+  passwod,
+  userPasswod
+) {
+  return await bcryptjs.compare(passwod, userPasswod);
+};
+
+userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
+  if (this.createdAt) {
+    let passwordChangedDate = parseInt(this.createdAt.getTime() / 1000);
+    return JWTTimestamp < passwordChangedDate;
+  }
+  return false;
 };
 
 const User = mongoose.model("User", userSchema);
