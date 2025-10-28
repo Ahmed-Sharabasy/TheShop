@@ -31,9 +31,9 @@ const saleSchema = new mongoose.Schema(
 );
 
 // virtual Middleware
-// saleSchema.virtual("totalPrice").get(function () {
-//   return this.saleQuantity * this.price;
-// });
+saleSchema.virtual("paidAmount").get(function () {
+  return this.saleQuantity * this.price;
+});
 
 // function to check if total price is bigger than product price or not
 saleSchema.methods.checkIFPriceISMatch = function () {
