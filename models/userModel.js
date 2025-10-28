@@ -23,7 +23,11 @@ const userSchema = new mongoose.Schema(
       validate: [validator.isEmail, "please enter a valid eamil "],
     },
 
-    role: { type: String, enum: ["admin", "user"], default: "user" },
+    role: {
+      type: String,
+      enum: ["admin", "customer", "supplier", "cash"],
+      default: "customer",
+    },
     createdAt: { type: Date, default: Date.now },
   },
   {
@@ -39,10 +43,8 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-userSchema.methods.checkPasswordsAreTheSame = async function (
-  passwod,
-  userPasswod
-) {
+// prettier-ignore
+userSchema.methods.checkPasswordsAreTheSame = async function (passwod,userPasswod) {
   return await bcryptjs.compare(passwod, userPasswod);
 };
 

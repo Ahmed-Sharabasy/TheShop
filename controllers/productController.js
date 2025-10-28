@@ -1,21 +1,21 @@
 const Product = require("../models/productModel.js");
 const AppError = require("../utils/AppError.js");
 
-exports.getProudctByType = async (req, res, next) => {
-  const query = req.query;
+// exports.getProudctByType = async (req, res, next) => {
+//   const query = req.query;
 
-  const Products = await Product.find(query);
-  // modify it
-  if (!Products) {
-    console.log("no");
-    next(new AppError("no type called like this ", 404));
-  }
+//   const Products = await Product.find(query);
+//   // modify it
+//   if (!Products) {
+//     console.log("no");
+//     next(new AppError("no type called like this ", 404));
+//   }
 
-  res.status(201).json({
-    status: "success",
-    data: { Products },
-  });
-};
+//   res.status(201).json({
+//     status: "success",
+//     data: { Products },
+//   });
+// };
 
 exports.getProductByID = async (req, res, next) => {
   console.log(req.params);
@@ -35,25 +35,43 @@ exports.getProductByID = async (req, res, next) => {
 
 // Add serach to api features and update this func to add search
 exports.getAllProducts = async (req, res) => {
-  // const Products = await Product.find({ name: /some/i });
-  const searchQuery = req.query.search;
-  console.log(searchQuery);
-
-  // new RegExp(..., "i")
-  // معناها تجاهل الفرق بين الحروف الكبيرة والصغيرة (case-insensitive)
-  const filter = searchQuery ? { name: new RegExp(searchQuery, "i") } : {};
-
-  const Products = await Product.find(filter);
+  // { <field>: { $regex: /pattern/, $options: '<options>' } }
+  const Products = await Product.find({
+    name: { $regex: req.query.name, $options: "i" }, // i case insensitive
+  });
 
   res.status(201).json({
     status: "success",
     data: { Products },
   });
 };
+
+// craete
 exports.createProduct = async (req, res) => {
   const newProduct = await Product.create(req.body);
   res.status(201).json({
     status: "success",
     data: { newProduct },
+  });
+};
+
+// delete
+exports.deleteProduct = async (req, res) => {
+  await Product.findByIdAndDelete(req.params.id);
+  res.status(204).json({
+    status: "success",
+    data: null,
+  });
+};
+
+// update
+exports.updateProduct = async (req, res) => {
+  const updatedProduct = await Product.findByIdAndUpdate(
+    req.params.id,
+    req.body
+  );
+  res.status(200).json({
+    status: "success",
+    data: { updatedProduct },
   });
 };

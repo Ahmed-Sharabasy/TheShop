@@ -7,16 +7,13 @@ const productSchema = new mongoose.Schema(
       required: [true, "Enter The name Please!"],
       trim: true,
     },
+    idNumber: Number,
     category: {
       type: String,
       required: [true, "Enter The Product Category!"],
       trim: true,
     },
-    discription: {
-      type: String,
-      trim: true,
-      minlength: [6, "Too short"],
-    },
+    discription: String,
     quantity: {
       type: Number,
       required: [true, "Enter The Product Quantity!"],

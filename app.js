@@ -1,6 +1,7 @@
 const express = require("express");
 const productRoutes = require("./routes/productRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
+const saleRoutes = require("./routes/saleRoutes.js");
 const globalErrorHandlerMiddleware = require("./controllers/errorController.js");
 const morgan = require("morgan");
 const { default: helmet } = require("helmet");
@@ -17,6 +18,7 @@ app.use(helmet());
 
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/sale", saleRoutes);
 
 app.use(globalErrorHandlerMiddleware);
 module.exports = app;
