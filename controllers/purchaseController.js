@@ -1,9 +1,10 @@
 const User = require("../models/userModel.js");
 const AppError = require("../utils/AppError");
 const Purchase = require("../models/purchaseModel.js");
+const Product = require("../models/productModel.js");
 
 exports.createPurchase = async (req, res, next) => {
-  const { supplier, products } = req.body;
+  const { supplier, products, InvoiceNumber } = req.body;
 
   const user = await User.findById(supplier);
   console.log(user);
@@ -20,22 +21,33 @@ exports.createPurchase = async (req, res, next) => {
   console.log(totalAmount);
 
   // إنشاء فاتورة الشراء
-  const Purchase = await Purchase.create({
+  const newPurchase = await Purchase.create({
     supplier,
+    InvoiceNumber,
     products,
     totalAmount,
   });
-  console.log(Purchase);
 
-  // تحديث الكمية في الـ Product
-  // for (const item of products) {
-  //   await Product.findByIdAndUpdate(item.product, {
-  //     $inc: { quantity: item.quantity }, // ← زي ما طلبت بالضبط
-  //   });
-  // }
+  let updatedProduct = {
+    products: [],
+  };
+
+  for (const item of products) {
+    const result = await Product.findByIdAndUpdate(
+      item.product,
+      {
+        $set: { price: item.price },
+        $inc: { quantity: item.quantity },
+      },
+      { new: true, runValidators: true }
+    );
+    updatedProduct.products.push(result);
+  }
+
+  console.log(updatedProduct.products);
 
   res.status(200).json({
-    data: { Purchase },
+    data: { newPurchase },
     status: "success",
     message: "Purchase created and product quantities updated successfully",
   });
